@@ -69,6 +69,97 @@ test('get list of all the blogs', async () => {
     expect(response.body).toHaveLength(initialBlogs.length)
 })
 
+test('to be id the unique identifier', async () => {
+    const response = await api
+        .get('/api/blogs')
+        
+    expect(response.body[0].id).toBeDefined()
+    expect(response.body[0]._id).not.toBeDefined()
+})
+
+test('add (POST) a new blog', async () => {
+    const newBlog = {
+        title: "Star Wars Fan Blog",
+        author: "Lucasart",
+        url: "http://starwars.com",
+        likes: 142,
+    }
+    const response = await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+    
+    const blogs = await api.get('/api/blogs')
+    const titles = blogs.body.map((blog)=> blog.title)
+    expect(blogs.body).toHaveLength(initialBlogs.length + 1)
+    expect(titles).toContain("Star Wars Fan Blog")
+})
+
+test('if no likes property, default to 0', async () => {
+    const newBlog = {
+        title: "Star Wars Fan Blog",
+        author: "Lucasart",
+        url: "http://starwars.com",
+    }
+    const response = await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+        
+    expect(response.body.likes).toBeDefined()
+    expect(response.body.likes).toBe(0)
+})
+
+test('if no url or title, send 400', async () => {
+    const newBlog = {
+        author: "Lucasart",
+    }
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
+        .expect('Content-Type', /application\/json/)
+})
+
+test('delete a blog post', async () => {
+    const response = await api.get("/api/blogs")
+    await api
+        .delete(`/api/blogs/${response.body[0].id}`)
+    const newResponse = await api.get("/api/blogs")
+
+    expect(newResponse.body).toHaveLength(initialBlogs.length - 1)
+})
+
+test('update blogpost', async () => {
+    const response = await api.get("/api/blogs")
+    const updatedBlog = response.body[0]
+    updatedBlog.likes = 99
+    const updateResponse = await api
+        .put(`/api/blogs/${response.body[0].id}`)
+        .send(updatedBlog)
+    
+    expect(updateResponse.body.likes).toBe(99)
+})
+
+test('update a nonexistant blogpost', async () => {
+    const dummyBlog = {
+        title: "Type wars",
+        author: "Robert C. Martin",
+        url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
+        likes: 2
+      }  
+    const response = await api.post('/api/blogs').send(dummyBlog)
+    const badId = response.body.id
+    await api.delete(`/api/blogs/${badId}`)
+    const updateResponse = await api
+        .put(`/api/blogs/${badId}`)
+        .send(dummyBlog)
+        .expect(400)
+})
+
+
 afterAll(async () => {
     await mongoose.connection.close()
   })
