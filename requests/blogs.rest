@@ -1,12 +1,34 @@
-GET http://localhost:3003/api/blogs
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title":"Harry Potter mysteries",
+    "author":"JK Rowling",
+    "url": "http://hp.es",
+    "likes": 42
+}
 
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title":"a blog",
-    "author":"Miguel Fernandez",
-    "url": "http://server.es",
-    "likes": 42
+    "title":"Ed sheeran fans",
+    "author":"A fan",
+    "url": "http://edsheeran.es",
+    "likes": 1
 }
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title":"Google no-privacy policy",
+    "author":"A google hater",
+    "url": "http://google.es",
+    "likes": 19
+}
+
+###
+GET http://localhost:3003/api/blogs
