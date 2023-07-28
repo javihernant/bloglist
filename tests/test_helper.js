@@ -1,58 +1,40 @@
-const initialBlogs = [
-    {
-        title: 'React patterns',
-        author: 'Michael Chan',
-        url: 'https://reactpatterns.com/',
-        likes: 7,
-    },
-    {
-        title: 'Go To Statement Considered Harmful',
-        author: 'Edsger W. Dijkstra',
-        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-        likes: 5,
-    },
-    {
-        title: 'Canonical string reduction',
-        author: 'Edsger W. Dijkstra',
-        url: 'http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html',
-        likes: 12,
-    },
-    {
-        title: 'First class tests',
-        author: 'Robert C. Martin',
-        url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
-        likes: 10
-    },
-    {
-        title: 'TDD harms architecture',
-        author: 'Robert C. Martin',
-        url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html',
-        likes: 0,
-    },
-    {
-        title: 'Type wars',
-        author: 'Robert C. Martin',
-        url: 'http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html',
-        likes: 2,
-    }
-]
-
 const initialUsers = [
     {
-        "username": "fer",
-        "name": "Fernando",
-        "password": "fer1234"
-    },
-    {
-        "username": "mersey",
-        "name": "BitMersey",
-        "password": "topsecret"
-    },
-    {
-        "username": "geronimo",
-        "name": "Geronimo",
-        "password": "1234contra"
+        id: '64c289488b7bc25882239d16',
+        username: 'geronimo',
+        name: 'Geronimo',
+        password: '$2b$10$FIlVD03i4xRps63vsutaIeJDGnzozlaUe0QGfko3tEMgSIaFuXAqO',
+        blogs: [
+            '64c3a53e59f2a1b776d59c07',
+            '64c3a57159f2a1b776d59c09',
+            '64c3a5cd59f2a1b776d59c0a'
+        ],
     }
 ]
-
-module.exports = {initialBlogs, initialUsers}
+const initialBlogs = [
+    {
+        id: '64c3a53e59f2a1b776d59c07',
+        title: 'Ed sheeran fans',
+        author: 'A fan',
+        url: 'http://edsheeran.es',
+        likes: 9,
+        user: '64c289488b7bc25882239d16'
+    },
+    {
+        id: '64c3a57159f2a1b776d59c09',
+        title: 'google shit',
+        author: 'lol',
+        url: 'http://google.es',
+        likes: 20,
+        user: '64c289488b7bc25882239d16'
+    },
+    {
+        id: '64c3a5cd59f2a1b776d59c0a',
+        title: 'shitty wok',
+        author: 'southpark',
+        url: 'http://southpark.es',
+        likes: 999,
+        user: '64c289488b7bc25882239d16'
+    },
+]
+module.exports = { initialBlogs, initialUsers }

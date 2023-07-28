@@ -9,17 +9,17 @@ const initialUsers = [
     {
         username: 'javi',
         name: 'Javier',
-        password: 'olaadios' 
+        password: 'olaadios'
     },
     {
         username: 'ppgrillo',
         name: 'Pepe',
-        password: 'saltasalta' 
+        password: 'saltasalta'
     },
     {
         username: 'joe',
         name: 'Joe Vandicamp',
-        password: 'ilikepies' 
+        password: 'ilikepies'
     },
 
 ]
@@ -37,29 +37,29 @@ describe('create new user (db contains 3 users)', () => {
     })
 
     test('a valid user', async () => {
-        
+
         const newUser = {
             username: 'chris',
             name: 'Christina',
             password: 'wafflesaremypassion'
         }
-        
+
         const resp = await api
             .post('/api/users')
             .send(newUser)
             .expect(201)
             .expect('Content-Type', /application\/json/)
-        
+
     })
 
     test('invalid user (password length < 3)', async () => {
-        
+
         const newUser = {
             username: 'chris',
             name: 'Christina',
             password: 'wa'
         }
-        
+
         const resp = await api
             .post('/api/users')
             .send(newUser)
@@ -67,7 +67,7 @@ describe('create new user (db contains 3 users)', () => {
             .expect('Content-Type', /application\/json/)
 
         expect(resp.body.error).toContain('password not valid')
-        
+
     })
 })
 
