@@ -144,13 +144,13 @@ test('update a nonexistant blogpost', async () => {
 describe('adding and deleting blogs', () => {
     test('add a new blog post (logged in)', async () => {
         const user = {
-            username: "geronimo",
-            name: "Geronimo",
-            password: "1234contra"
+            username: 'geronimo',
+            name: 'Geronimo',
+            password: '1234contra'
         }
         const loginResponse = await await api
-                            .post('/api/login')
-                            .send(user)
+            .post('/api/login')
+            .send(user)
         const newBlog = {
             title: 'Star Wars Fan Blog',
             author: 'Lucasart',
@@ -188,14 +188,14 @@ describe('adding and deleting blogs', () => {
     test('delete a blog post (login, authorized)', async () => {
         const response = await api.get('/api/blogs')
         const user = {
-            username: "geronimo",
-            name: "Geronimo",
-            password: "1234contra"
+            username: 'geronimo',
+            name: 'Geronimo',
+            password: '1234contra'
         }
         const loginResponse = await await api
-                            .post('/api/login')
-                            .send(user)
-                        
+            .post('/api/login')
+            .send(user)
+
         await api
             .delete(`/api/blogs/${response.body[0].id}`)
             .set('Authorization', `Bearer ${loginResponse.body.token}`)
