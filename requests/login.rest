@@ -19,11 +19,15 @@ Content-Type: application/json
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZlciIsImlkIjoiNjRjMjg5NGY4YjdiYzI1ODgyMjM5ZDFhIiwiaWF0IjoxNjkwNDc1ODA4LCJleHAiOjE2OTA0Nzk0MDh9.IiZDf7Dho_llIScPrq3-J_-D-t5Bc4SLUvE11YdSs1A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZlciIsImlkIjoiNjRjMjg5NGY4YjdiYzI1ODgyMjM5ZDFhIiwiaWF0IjoxNjkwNTQxNjI4LCJleHAiOjE2OTA1NDUyMjh9.LiyXKqoIHYjSiQVmK-tWqLpSMPOJbO_Xs3O0g9dFv2k
 
 {
-    "title":"shitty wok3",
-    "author":"chinese from southpark",
+    "title":"happy world",
+    "author":"orwell",
     "url": "http://google.es",
     "likes": 99
 }
+
+###
+DELETE http://localhost:3003/api/blogs/64c39e9919de7413485410ab
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZlciIsImlkIjoiNjRjMjg5NGY4YjdiYzI1ODgyMjM5ZDFhIiwiaWF0IjoxNjkwNTQxNjI4LCJleHAiOjE2OTA1NDUyMjh9.LiyXKqoIHYjSiQVmK-tWqLpSMPOJbO_Xs3O0g9dFv2k
